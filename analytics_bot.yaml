@@ -1,0 +1,48 @@
+%YAML 1.2
+---
+# Config for analytics_bot
+# --------------------------
+database:
+    catalog_ratengoods:
+        dbname: catalog
+        user: test.analytic
+        password: XXXXXX
+        host: XXXXXX
+        port: 5432
+        connect_timeout: 15
+        read_only: True
+    analytics:
+        dbname: analytics
+        user: test.analytic
+        password: XXXXXX
+        host: XXXXXX
+        port: 5432
+        connect_timeout: 15
+        read_only: False
+logging:
+    version: 1
+    disable_existing_loggers: true
+    formatters:
+        simple:
+            format: "%(asctime)s %(filename)-20s %(lineno)-7d %(levelname)-8s %(message)s"
+    handlers:
+        console:
+            class: logging.StreamHandler
+            level: DEBUG
+            formatter: simple
+        file:
+            class: logging.handlers.WatchedFileHandler
+            level: DEBUG
+            formatter: simple
+            filename: analytics_bot.log
+            encoding: utf8
+#    root:
+#        level: NOTSET
+#        handlers: [console, file]
+#        propogate: yes
+    loggers:
+        analytics_bot:
+            level: DEBUG
+            handlers: [console, file]
+            propogate: no
+... # suffix
